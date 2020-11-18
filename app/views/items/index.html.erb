@@ -1,13 +1,17 @@
-<h2>アイテム一覧</h2>
-<table>
-  <tr>
-    <th>アイテム名</th>
-    <th>登録日時</th>
-  </tr>
-  <tr>
-    <% @items.each do item %>
-      <td><%= item.name %></td>
-      <td><%= item.created_at %></td>
-    <% end %>
-  </tr>
-</table>
+<div class="container">
+  <div class="row">
+    <h2>アイテム一覧</h2>
+    <table>
+      <tr>
+        <th>アイテム名</th>
+        <th>登録日時</th>
+      </tr>
+      <tr>
+        <% @items.each do item %>
+          <td><%= item.name %></td>
+          <td><%= item.created_at %></td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+</div>
