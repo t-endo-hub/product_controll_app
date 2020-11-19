@@ -1,17 +1,21 @@
 <div class="container">
-  <div class="row">
-    <h2>アイテム一覧</h2>
-    <table>
+  <h2>アイテム一覧</h2>
+  <table class="table">
+    <thead>
       <tr>
         <th>アイテム名</th>
         <th>登録日時</th>
+        <td></td>
       </tr>
+    </thead>
+    <tbody>
       <tr>
-        <% @items.each do item %>
+        <% @items.each do |item| %>
           <td><%= item.name %></td>
           <td><%= item.created_at %></td>
+          <td><%= link_to '編集', edit_item_path(item), class: 'btn btn-primary' %>
         <% end %>
       </tr>
-    </table>
-  </div>
+    </tbody>
+  </table>
 </div>
