@@ -27,6 +27,17 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+    if @item.destroy
+      flash[:notice] = "アイテムを削除しました"
+      redirect_to items_path
+    else
+      flash[:alert] = "アイテムの削除に失敗しました"
+      render items_edit_pash(@item)
+    end
+  end
+
 
 
   private
