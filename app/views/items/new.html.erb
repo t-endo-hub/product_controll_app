@@ -1,9 +1,7 @@
-<div class="container"> 
-  <h2>アイテム新規登録</h2><br>
-  <%= form_with(model:@item, local: true) do |f| %>
-    <div class="field">    
-      <%= f.text_field :name, placeholder: 'アイテム名'%>
-      <%= f.submit '追加'%>
-    </div>
-  <% end %>
-</div>
+<h2>アイテム新規登録</h2><br>
+<%= form_with(model:@item, local: true) do |f| %>
+  <div class="field">    
+    <%= f.text_field :name, placeholder: 'アイテム名'%>
+    <%= f.submit '追加'%>
+  </div>
+<% end %>
