@@ -8,8 +8,14 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
-    redirect_to items_path
+    @item = Item.new(item_params)
+    if @item.save
+      flash[:notice] = "アイテムを追加しました"
+      redirect_to items_path
+    else
+      flash[:alert] = "アイテムの追加に失敗しました"
+      render new_item_path
+    end
   end
    
   def update
@@ -19,7 +25,7 @@ class ItemsController < ApplicationController
       redirect_to items_path
     else
       flash[:alert] = "アイテムの更新に失敗しました"
-      render items_pash(@item)
+      render 'edit'
     end
   end
 
