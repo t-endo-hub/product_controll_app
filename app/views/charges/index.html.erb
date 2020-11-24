@@ -1,0 +1,22 @@
+<div class="row">
+  <h2>担当者一覧</h2>
+  <%= link_to '担当者登録', new_charge_path, class: 'btn btn-primary ml-3' %>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>担当者名</th>
+      <th>製作可能アイテム数</th>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @charges.each do |charge| %>
+      <tr>
+          <td><%= charge.charge_name %></td>
+          <td>（アイテム数）個</td>
+          <td><%= link_to '編集', edit_charge_path(charge), class: 'btn btn-primary' %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
