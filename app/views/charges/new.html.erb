@@ -1,0 +1,8 @@
+<%= render 'layouts/error_messages', model: @charge %>
+<h2>担当者新規登録</h2><br>
+<%= form_with(model:@charge, local: true) do |f| %>
+  <div class="field">    
+    <%= f.text_field :charge_name, placeholder: '担当者名'%>
+    <%= f.submit '追加'%>
+  </div>
+<% end %>
