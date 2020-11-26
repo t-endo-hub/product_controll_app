@@ -32,7 +32,20 @@ class ChargesController < ApplicationController
       render 'edit'
     end
   end
+
+  def destroy
+    @charge = Charge.find(params[:id])
+    if @charge.destroy
+      flash[:notice] = "担当者を削除しました"
+      redirect_to charges_path
+    else
+      flash[:alert] = "担当者の削除に失敗しました"
+      render 'edit'
+    end
+  end
+
   private
+  
   def charge_params
     params.require(:charge).permit(:charge_name)
   end
