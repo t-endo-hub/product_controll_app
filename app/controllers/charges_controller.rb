@@ -22,6 +22,16 @@ class ChargesController < ApplicationController
     @charge = Charge.find(params[:id])
   end
 
+  def update
+    @charge = Charge.find(params[:id])
+    if @charge.update(charge_params)
+      flash[:notice] = "担当者名を更新しました"
+      redirect_to charges_path
+    else
+      flash[:alert] = "担当者名の更新に失敗しました"
+      render 'edit'
+    end
+  end
   private
   def charge_params
     params.require(:charge).permit(:charge_name)
