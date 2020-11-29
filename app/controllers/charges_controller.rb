@@ -20,6 +20,8 @@ class ChargesController < ApplicationController
 
   def edit
     @charge = Charge.find(params[:id])
+    @items = Item.all
+    @charge_can_work = ChargeCanWork.new
   end
 
   def update

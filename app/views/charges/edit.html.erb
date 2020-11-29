@@ -1,9 +1,48 @@
-<%= render 'layouts/error_messages', model: @charge %>
-<h2>担当者編集</h2><br>
 <div class="row">
-  <%= form_with(model:@charge, local: true) do |f| %>
-    <%= f.text_field :charge_name, placeholder: '担当者名'%>
-    <%= f.submit '編集', class: 'btn btn-primary' %>
-    <%= link_to '削除', charge_path(@charge), method: :delete, class:'btn btn-danger' %>
-  <% end %>
+  <div class="col-md-4">
+    <%= render 'layouts/error_messages', model: @charge %>
+    <h2>担当者編集</h2><br>
+    <div class="row">
+      <%= form_with(model:@charge, local: true) do |f| %>
+        <%= f.text_field :charge_name, placeholder: '担当者名'%>
+        <%= f.submit '編集', class: 'btn btn-primary' %>
+        <%= link_to '削除', charge_path(@charge), method: :delete, class:'btn btn-danger' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <h2>担当可能アイテム</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>アイテム名</th>
+          <th>製作可能時間</th>
+          <th></th>
+        </tr>
+       </thead>
+       <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td>
+              <%= item.name %>
+            </td>
+            <td>
+              時間h
+            </td>
+            <td>
+              削除ボタン
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= form_with(model:@charge_can_work, local: true) do |f| %>
+      <input name="charge_id" type="hidden" value="<% @charge.id%>">
+      <%= f.collection_select :item_id, Item.all, :id, :name %>
+      <%= f.text_field :time_required %>
+      <%= f.submit "送信" %>
+    <% end %>
+
+  </div>
 </div>
