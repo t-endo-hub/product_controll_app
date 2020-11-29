@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_133743) do
+ActiveRecord::Schema.define(version: 2020_11_29_113617) do
+
+  create_table "charge_can_works", force: :cascade do |t|
+    t.integer "charge_id"
+    t.integer "item_id"
+    t.float "time_required"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["charge_id"], name: "index_charge_can_works_on_charge_id"
+    t.index ["item_id"], name: "index_charge_can_works_on_item_id"
+  end
 
   create_table "charges", force: :cascade do |t|
     t.string "charge_name"
