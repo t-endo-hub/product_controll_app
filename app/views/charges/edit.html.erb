@@ -38,7 +38,7 @@
     </table>
 
     <%= form_with(model:@charge_can_work, local: true) do |f| %>
-      <input name="charge_id" type="hidden" value="<% @charge.id%>">
+      <%= f.hidden_field :charge_id, :value => @charge.id %>
       <%= f.collection_select :item_id, Item.all, :id, :name %>
       <%= f.text_field :time_required %>
       <%= f.submit "送信" %>
