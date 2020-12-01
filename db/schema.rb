@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_29_113617) do
+ActiveRecord::Schema.define(version: 2020_12_01_062001) do
 
   create_table "charge_can_works", force: :cascade do |t|
     t.integer "charge_id"
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 2020_11_29_113617) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "production_plan_on_charges", force: :cascade do |t|
+    t.integer "charge_id"
+    t.integer "item_id"
+    t.date "start_date_of_week"
+    t.integer "num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["charge_id"], name: "index_production_plan_on_charges_on_charge_id"
+    t.index ["item_id"], name: "index_production_plan_on_charges_on_item_id"
   end
 
   create_table "users", force: :cascade do |t|
