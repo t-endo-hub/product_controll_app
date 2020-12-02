@@ -24,7 +24,7 @@
         <% @items.each do |item| %>
           <tr>
             <td>
-              <%= item.name %>
+              <%= item.item_name %>
             </td>
             <td>
               時間h
@@ -39,7 +39,7 @@
 
     <%= form_with(model:@charge_can_work, local: true) do |f| %>
       <%= f.hidden_field :charge_id, :value => @charge.id %>
-      <%= f.collection_select :item_id, Item.all, :id, :name %>
+      <%= f.collection_select :item_id, Item.all, :id, :item_name %>
       <%= f.text_field :time_required %>
       <%= f.submit "送信" %>
     <% end %>

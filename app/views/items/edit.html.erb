@@ -2,7 +2,7 @@
 <h2>アイテム編集</h2><br>
 <div class="row">
   <%= form_with(model:@item, local: true) do |f| %>
-    <%= f.text_field :name, placeholder: 'アイテム名'%>
+    <%= f.text_field :item_name, placeholder: 'アイテム名'%>
     <%= f.submit '編集', class: 'btn btn-primary' %>
     <%= link_to '削除', item_path(@item), method: :delete, class:'btn btn-danger' %>
   <% end %>

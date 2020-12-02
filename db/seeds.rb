@@ -6,6 +6,6 @@ end
 
 5.times do |n|
   Item.create!(
-    name: "テストアイテム#{n + 1}",
+    item_name: "テストアイテム#{n + 1}",
   )
 end
