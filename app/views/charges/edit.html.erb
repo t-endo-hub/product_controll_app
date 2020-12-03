@@ -21,16 +21,17 @@
         </tr>
        </thead>
        <tbody>
-        <% @items.each do |item| %>
+        <% @charge_can_works.each do |charge_can_work| %>
+          <% @item = Item.find(charge_can_work.item.id) %>
           <tr>
             <td>
-              <%= item.item_name %>
+              <%= @item.item_name %>
             </td>
             <td>
-              時間h
+              <%= charge_can_work.time_required %>h
             </td>
             <td>
-              削除ボタン
+              <%= link_to("削除", charge_can_work_path, method: :destroy, class: "btn btn-danger") %>
             </td>
           </tr>
         <% end %>
@@ -38,9 +39,12 @@
     </table>
 
     <%= form_with(model:@charge_can_work, local: true) do |f| %>
+
       <%= f.hidden_field :charge_id, :value => @charge.id %>
+      <%= f.label :item_id, "アイテム名" %>
       <%= f.collection_select :item_id, Item.all, :id, :item_name %>
-      <%= f.text_field :time_required %>
+      <%= f.label :time_required, "制作時間" %>
+      <%= f.text_field :time_required, placeholder: "例) 1.25" %>
       <%= f.submit "送信" %>
     <% end %>
 

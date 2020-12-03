@@ -22,6 +22,7 @@ class ChargesController < ApplicationController
     @charge = Charge.find(params[:id])
     @items = Item.all
     @charge_can_work = ChargeCanWork.new
+    @charge_can_works = ChargeCanWork.where(charge_id: params[:id])
   end
 
   def update
