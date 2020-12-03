@@ -9,6 +9,13 @@ class ChargeCanWorksController < ApplicationController
     redirect_back(fallback_location: charge_path(Charge.find(@ChargeCanWork.charge_id)))
   end
 
+  def destroy
+    @ChargeCanWork = ChargeCanWork.find(params[:id])
+    @ChargeCanWork.destroy
+    flash[:notice] = "生産可能アイテムを削除しました"
+    redirect_back(fallback_location: charge_path(Charge.find(@ChargeCanWork.charge_id)))
+  end
+
   private
   def charge_can_work_params
     params.require(:charge_can_work).permit(:time_required, :item_id, :charge_id)
