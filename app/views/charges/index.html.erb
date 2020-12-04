@@ -13,8 +13,9 @@
   <tbody>
     <% @charges.each do |charge| %>
       <tr>
+      <% item_count = charge.charge_can_works.count %>
           <td><%= charge.charge_name %></td>
-          <td>（アイテム数）個</td>
+          <td><%= item_count %></td>
           <td><%= link_to '編集', edit_charge_path(charge), class: 'btn btn-primary' %>
       </tr>
     <% end %>
