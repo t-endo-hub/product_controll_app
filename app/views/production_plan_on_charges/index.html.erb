@@ -1,0 +1,23 @@
+<div class="row">
+  <h2>予定 実績一覧ん</h2>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>実績 / 予定</th>
+      <% @mondays.each do |mon| %>
+        <th><%= mon %></th>
+      <% end %>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <th><%= item.item_name %></th>
+        <td>実績・予定</td>
+        <td>編集リンク</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
