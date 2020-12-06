@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-3">
+    <h2>生産予定編集</h2>
+    <h4><%= Item.find(params[:item_id]).item_name %>
+  </div>
+  <div class="col-md-8">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>予定数</th>
+          <% @mondays.each do |mon| %>
+            <th><%= mon %></th>
+          <% end %>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @last_monday_plan = 0 %>
+        <% @this_monday_plan = 0 %>
+        <% @next_monday_plan = 0 %>
+        <% @in_2next_monday_plan = 0 %>
+      
+        <% @can_work_charges.each do |can_work_charge| %>
+          <tr>
+            <th><%= can_work_charge.charge.charge_name %></th>
+            <td><%= @last_monday_plan %></td>
+            <td><%= @this_monday_plan %></td>
+            <td><%= @next_monday_plan %></td>
+            <td><%= @in_2next_monday_plan %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= form_with(model:@new_production_plan, local: true) do |f| %>
+      <%= f.select :charge_id, @can_work_charges.map{|o| [o.charge.charge_name, o.charge_id]} %>
+      <%= f.text_field :num, placeholder: "生産予定数を入力" %>
+      <%= f.submit '追加', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
