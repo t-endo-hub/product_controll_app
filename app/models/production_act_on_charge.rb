@@ -1,0 +1,2 @@
+class ProductionActOnCharge < ApplicationRecord
+end

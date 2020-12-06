@@ -1,0 +1,2 @@
+class ProductionActOnChargesController < ApplicationController
+end
