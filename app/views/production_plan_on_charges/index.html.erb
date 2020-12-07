@@ -9,6 +9,7 @@
         <th><%= mon %></th>
       <% end %>
       <th></th>
+      
     </tr>
   </thead>
   <tbody>
@@ -29,6 +30,7 @@
         <td><%= @next_monday_act %> / <%= @next_monday_plan %></td>
         <td><%= @in_2next_monday_act %> / <%= @in_2next_monday_plan %></td>
         <td><%= link_to '予定編集', new_production_plan_on_charge_path(item) %></td>
+        <td><%= link_to '実績編集', new_production_act_on_charge_path(item) %></td>
       </tr>
     <% end %>
   </tbody>
