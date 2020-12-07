@@ -1,5 +1,5 @@
 class ProductionActOnChargesController < ApplicationController
-  before_action :add_mondays, only: [:create,:new]
+  before_action :add_mondays, only: [:new]
   def new
     @item_acts = ProductionActOnCharge.where(item_id: params[:item_id])
     @can_work_charges = ChargeCanWork.where(item_id: params[:item_id])
@@ -35,7 +35,7 @@ class ProductionActOnChargesController < ApplicationController
       # フォーマットを変更して配列@mondaysに
       @mondays = []
       monday_arreys.each do |monday|
-        @mondays.push(monday.strftime("%Y-%m-%d"))
+        @mondays.push(monday)
       end
   end
 

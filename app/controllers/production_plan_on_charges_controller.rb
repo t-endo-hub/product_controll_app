@@ -3,6 +3,8 @@ class ProductionPlanOnChargesController < ApplicationController
 
   def index
     @items = Item.all
+    @production_plans = ProductionPlanOnCharge.all
+    @production_acts = ProductionActOnCharge.all
   end
 
   def new
@@ -41,7 +43,7 @@ class ProductionPlanOnChargesController < ApplicationController
       # フォーマットを変更して配列@mondaysに
       @mondays = []
       monday_arreys.each do |monday|
-        @mondays.push(monday.strftime("%Y-%m-%d"))
+        @mondays.push(monday)
       end
   end
 end
