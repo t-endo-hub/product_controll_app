@@ -1,10 +1,23 @@
 class ProductionActOnChargesController < ApplicationController
-  before_action :add_mondays, only: [:new]
+  before_action :add_mondays, only: [:create,:new]
   def new
     @item_acts = ProductionActOnCharge.where(item_id: params[:item_id])
     @can_work_charges = ChargeCanWork.where(item_id: params[:item_id])
     @new_production_act = ProductionActOnCharge.new
   end
+
+  def create
+    @production_act = ProductionActOnCharge.new(act_params)
+    @production_act.item_id = params[:item_id]
+    if @production_act.save
+      flash[:notice] = "実績を作成しました"
+      redirect_to root_path
+    else
+      flash[:alert] = "実績の作成に失敗しました"
+      redirect_back(fallback_location: new_production_act_on_charge_path(@production_act.charge_id))
+    end
+  end
+
 
   def act_params
     params.permit(:charge_id, :item_id, :num, :start_date_of_week)
