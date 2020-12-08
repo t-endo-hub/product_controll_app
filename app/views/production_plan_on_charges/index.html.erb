@@ -14,6 +14,9 @@
   </thead>
   <tbody>
   <% 
+  @i = 0
+  @j = 0
+  @items.each do |item|
    @last_monday_act = 0 
    @this_monday_act = 0 
    @next_monday_act = 0 
@@ -22,25 +25,39 @@
    @this_monday_plan = 0 
    @next_monday_plan = 0 
    @in_2next_monday_plan = 0 
-  @i = 0
-  @items.each do |item|
-  while @i < item.production_plan_on_charges.count
+
+  while @i < item.production_plan_on_charges.count   
     if item.production_plan_on_charges[@i].start_date_of_week == @mondays[0]
       @last_monday_plan =  @last_monday_plan + item.production_plan_on_charges[@i].num
     
     elsif item.production_plan_on_charges[@i].start_date_of_week == @mondays[1]
       @this_monday_plan = @this_monday_plan + item.production_plan_on_charges[@i].num
-    
+
     elsif item.production_plan_on_charges[@i].start_date_of_week == @mondays[2]
       @next_monday_plan = @next_monday_plan + item.production_plan_on_charges[@i].num
-    
-    elsif item.production_plan_on_charges[@i].start_date_of_week == @mondays[3]
-      @in_2next_monday_plan = @in_2next_monday_plan + item.production_plan_on_charges[@i].num
-    
-    end
-          
 
+    else item.production_plan_on_charges[@i].start_date_of_week == @mondays[3]
+      @in_2next_monday_plan = @in_2next_monday_plan + item.production_plan_on_charges[@i].num
+
+    end
    @i = @i + 1
+  end
+
+  while @j < item.production_act_on_charges.count   
+    if item.production_act_on_charges[@j].start_date_of_week == @mondays[0]
+      @last_monday_act =  @last_monday_act + item.production_act_on_charges[@j].num
+    
+    elsif item.production_act_on_charges[@j].start_date_of_week == @mondays[1]
+      @this_monday_act = @this_monday_act + item.production_act_on_charges[@j].num
+
+    elsif item.production_act_on_charges[@j].start_date_of_week == @mondays[2]
+      @next_monday_act = @next_monday_act + item.production_act_on_charges[@j].num
+
+    else item.production_act_on_charges[@j].start_date_of_week == @mondays[3]
+      @in_2next_monday_act = @in_2next_monday_act + item.production_act_on_charges[@j].num
+
+    end
+   @j = @j + 1
   end
    %>
   
