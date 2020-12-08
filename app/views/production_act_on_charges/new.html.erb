@@ -15,12 +15,29 @@
         </tr>
       </thead>
       <tbody>
-        <% @last_monday_act = 0 %>
-        <% @this_monday_act = 0 %>
-        <% @next_monday_act = 0 %>
-        <% @in_2next_monday_act = 0 %>
-      
-        <% @can_work_charges.each do |can_work_charge| %>
+        <% 
+        @can_work_charges.each do |can_work_charge|
+          @last_monday_act = 0 
+          @this_monday_act = 0 
+          @next_monday_act = 0 
+          @in_2next_monday_act = 0 
+
+          # 担当者ごと、週毎にソートして合計を計算
+            can_work_charge.charge.production_act_on_charges.each do |production_act_on_charge|
+              if production_act_on_charge.start_date_of_week == @mondays[0]
+                @last_monday_act =  @last_monday_act + production_act_on_charge.num
+              
+              elsif production_act_on_charge.start_date_of_week == @mondays[1]
+                @this_monday_act = @this_monday_act + production_act_on_charge.num
+
+              elsif production_act_on_charge.start_date_of_week == @mondays[2]
+                @next_monday_act = @next_monday_act + production_act_on_charge.num
+
+              elsif production_act_on_charge.start_date_of_week == @mondays[3]
+                @in_2next_monday_act = @in_2next_monday_act + production_act_on_charge.num
+              end
+            end
+          %>
           <tr>
             <th><%= can_work_charge.charge.charge_name %></th>
             <td><%= @last_monday_act %></td>
