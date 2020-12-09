@@ -16,11 +16,22 @@ class ProductionPlanOnChargesController < ApplicationController
   def create
     @production_plan = ProductionPlanOnCharge.new(plan_params)
     @production_plan.item_id = params[:item_id]
-    if @production_plan.save
-      flash[:notice] = "予定を作成しました"
-      redirect_to root_path
+
+    # 予定がすでに存在していないか
+    @already_plan = ProductionPlanOnCharge.where(charge_id: params[:charge_id], item_id: params[:item_id], start_date_of_week: params[:start_date_of_week])
+
+    if @already_plan.empty?
+      # 予定の新規作成処理
+      if @production_plan.save
+        flash[:notice] = "予定を作成しました"
+        redirect_to root_path
+      else
+        flash[:alert] = "予定の作成に失敗しました"
+        redirect_back(fallback_location: new_production_plan_on_charge_path(@production_plan.charge_id))
+      end
     else
-      flash[:alert] = "予定の作成に失敗しました"
+      # 予定がすでに存在している場合の処理
+      flash[:notice] = "予定は既に登録されています"
       redirect_back(fallback_location: new_production_plan_on_charge_path(@production_plan.charge_id))
     end
   end
