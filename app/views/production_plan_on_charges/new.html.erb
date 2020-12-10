@@ -66,7 +66,7 @@
       </tbody>
     </table>
 
-    <%= form_with(url: production_plan_on_charge_path(params[:item_id]), local: true, method: :POST) do |f| %>
+    <%= form_with(model: @new_production_plan, url: production_plan_on_charge_path(params[:item_id]), local: true, method: :POST) do |f| %>
       <%= f.select :charge_id, @can_work_charges.map{|can_work_charge| [can_work_charge.charge.charge_name, can_work_charge.charge_id]} %>
       <%= f.select :start_date_of_week, @mondays.map{|monday| [monday, monday]} %>
       <%= f.text_field :num, placeholder: "生産予定数を入力" %>
