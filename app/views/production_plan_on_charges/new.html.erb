@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-3">
-    <h2>生産予定編集</h2>
+    <h2>生産予定登録</h2>
     <h4><%= Item.find(params[:item_id]).item_name %>
   </div>
   <div class="col-md-8">
@@ -41,10 +41,26 @@
       
           <tr>
             <th><%= can_work_charge.charge.charge_name %></th>
-            <td><%= @last_monday_plan %></td>
-            <td><%= @this_monday_plan %></td>
-            <td><%= @next_monday_plan %></td>
-            <td><%= @in_2next_monday_plan %></td>
+            <td>
+              <%= link_to edit_production_plan_on_charge_path(can_work_charge.charge_id, can_work_charge.item_id, @mondays[0]), class: "text-dark" do %>
+                <%= @last_monday_plan %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_production_plan_on_charge_path(can_work_charge.charge_id, can_work_charge.item_id, @mondays[1]), class: "text-dark" do %>
+                <%= @this_monday_plan %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_production_plan_on_charge_path(can_work_charge.charge_id, can_work_charge.item_id, @mondays[2]), class: "text-dark" do %>
+                <%= @next_monday_plan %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_production_plan_on_charge_path(can_work_charge.charge_id, can_work_charge.item_id, @mondays[3]), class: "text-dark" do %>
+                <%= @in_2next_monday_plan %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

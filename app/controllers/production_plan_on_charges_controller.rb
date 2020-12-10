@@ -36,6 +36,14 @@ class ProductionPlanOnChargesController < ApplicationController
     end
   end
 
+  def edit
+    @charge = Charge.find(params[:charge_id])
+    @item = Item.find(params[:item_id])
+    @monday = params[:start_date_of_week]
+    @production_plan_on_charge = ProductionPlanOnCharge.find_by(charge_id: @charge, item_id: @item, start_date_of_week: @monday)
+
+  end
+
   private
 
   def plan_params

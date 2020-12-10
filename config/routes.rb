@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to: 'production_plan_on_charges#index'
   get 'production_plan_on_charges/:item_id/', to: 'production_plan_on_charges#new', as: 'new_production_plan_on_charge'
   post 'production_plan_on_charges/:item_id/', to: 'production_plan_on_charges#create', as: 'production_plan_on_charge'
+  get 'production_plan_on_charges/:charge_id/:item_id/:start_date_of_week/', to: 'production_plan_on_charges#edit', as: 'edit_production_plan_on_charge'
+  put 'production_plan_on_charges/:charge_id/:item_id/:start_date_of_week/', to: 'production_plan_on_charges#update', as: 'update_production_plan_on_charge'
   get 'production_act_on_charges/:item_id/', to: 'production_act_on_charges#new', as: 'new_production_act_on_charge'
   post 'production_act_on_charges/:item_id/', to: 'production_act_on_charges#create', as: 'production_act_on_charge'
   resources :items

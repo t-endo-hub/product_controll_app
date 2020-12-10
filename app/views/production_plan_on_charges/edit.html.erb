@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-3">
+    <h2>生産予定編集</h2>
+    <h5><%= @item.item_name %></h5>
+    <h5><%= @charge.charge_name %></h5>
+  </div>
+  <div class="col-md-8">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= @monday %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <td>
+          <%= form_with(model: @production_plan_on_charge, local: true, method: :PUT) do |f| %>
+            <%= f.text_field :num, placeholder: "生産予定数を入力" %>
+            <%= f.submit '変更', class: 'btn btn-primary' %>
+          <% end %>
+        </td>
+      </tbody>
+    </table>
+  </div>
+</div>
