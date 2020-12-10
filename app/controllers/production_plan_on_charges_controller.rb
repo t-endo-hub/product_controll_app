@@ -42,6 +42,7 @@ class ProductionPlanOnChargesController < ApplicationController
     @monday = params[:start_date_of_week]
     @production_plan_on_charge = ProductionPlanOnCharge.find_by(charge_id: @charge, item_id: @item, start_date_of_week: @monday)
 
+    # 予定が存在しない場合はリダイレクト
     if @production_plan_on_charge.nil?
       flash[:notice] = "予定を新規追加してください"
       redirect_back(fallback_location: new_production_plan_on_charge_path(@charge))
