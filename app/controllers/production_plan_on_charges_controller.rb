@@ -41,13 +41,23 @@ class ProductionPlanOnChargesController < ApplicationController
     @item = Item.find(params[:item_id])
     @monday = params[:start_date_of_week]
     @production_plan_on_charge = ProductionPlanOnCharge.find_by(charge_id: @charge, item_id: @item, start_date_of_week: @monday)
+  end
 
+  def update
+    @production_plan_on_charge = ProductionPlanOnCharge.find_by(charge_id: params[:charge_id], item_id: params[:item_id], start_date_of_week: params[:start_date_of_week])
+    if @production_plan_on_charge.update(plan_params)
+      flash[:notice] = "予定を変更しました"
+      redirect_to root_path
+    else
+      flash[:alert] = "予定の変更に失敗しました"
+      render 'edit'
+    end
   end
 
   private
 
   def plan_params
-    params.permit(:charge_id, :item_id, :num, :start_date_of_week)
+    params.require(:production_plan_on_charge).permit(:id,:charge_id, :item_id, :num, :start_date_of_week)
   end
 
   def add_mondays

@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <td>
-          <%= form_with(model: @production_plan_on_charge, local: true, method: :PUT) do |f| %>
+          <%= form_with(model: @production_plan_on_charge, url: update_production_plan_on_charge_path(@charge, @item, @monday), local: true, method: :patch) do |f| %>
             <%= f.text_field :num, placeholder: "生産予定数を入力" %>
             <%= f.submit '変更', class: 'btn btn-primary' %>
           <% end %>
