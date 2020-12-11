@@ -3,10 +3,14 @@
     <%= link_to "sample app", '#', id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "アイテム一覧",   items_path %></li>
-        <li><%= link_to "担当者一覧",   charges_path %></li>
-        <li><%= link_to "実績予定一覧", production_plan_on_charges_path %>
-        <li><%= link_to "Log in", '#' %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to "アイテム一覧",   items_path %></li>
+          <li><%= link_to "担当者一覧",   charges_path %></li>
+          <li><%= link_to "実績予定一覧", production_plan_on_charges_path %>
+        <% else %>
+          <li><%= link_to "Log in", new_user_session_path %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <% end %>
       </ul>
     </nav>
   </div>
