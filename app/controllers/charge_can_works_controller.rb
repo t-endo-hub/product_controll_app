@@ -1,4 +1,5 @@
 class ChargeCanWorksController < ApplicationController
+  before_action :authenticate_user!
   def create
     @ChargeCanWork = ChargeCanWork.new(charge_can_work_params)
     if @ChargeCanWork.save
